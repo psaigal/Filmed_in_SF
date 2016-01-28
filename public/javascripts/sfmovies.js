@@ -5,41 +5,41 @@ $(document).ready(function() {
       //data is the JSON string
       var arrayOfInformation = data;
         for (index in arrayOfInformation) {
-          arrayOfObjects.push({name:arrayOfInformation[index].title, location: arrayOfInformation[index].locations})
+          arrayOfObjects.push({name:arrayOfInformation[index].title, location: arrayOfInformation[index].locations, releaseYear: arrayOfInformation[index].release_year, productionCompany: arrayOfInformation[index].production_company, director: arrayOfInformation[index].director})
       };
   });
 
 
-    $('#movie-form').submit(function(event) {
-    event.preventDefault();
-    var path = $('#movie-form').attr("action")
-    var formData = $('#movie-form').serialize();
-    $.ajax({
-      url: '/submit',
-      type: 'POST',
-      data: formData,
-      success: function(data) {
-      console.log(data);
-      console.log('Successful');
-   },
+  //   $('#movie-form').submit(function(event) {
+  //   event.preventDefault();
+  //   var path = $('#movie-form').attr("action")
+  //   var formData = $('#movie-form').serialize();
+  //   $.ajax({
+  //     url: '/submit',
+  //     type: 'POST',
+  //     data: formData,
+  //     success: function(data) {
+  //     console.log(data);
+  //     console.log('Successful');
+  //  },
 
-    error: function() {
-      console.log('Error');
-    }
-    })
-    .done(function(response){
-      movieSearchTerm = response.nameOfMovie;
-      for (index in arrayOfObjects) {
-        console.log(arrayOfObjects[index].name);
-        if (arrayOfObjects[index].name == movieSearchTerm) {
-          // console.log(arrayOfObjects[index].location);
-          $("#container").append(arrayOfObjects[index].location + "<br>");
-        }
-      }
-    });
+  //   error: function() {
+  //     console.log('Error');
+  //   }
+  //   })
+  //   .done(function(response){
+  //     movieSearchTerm = response.nameOfMovie;
+  //     for (index in arrayOfObjects) {
+  //       console.log(arrayOfObjects[index].name);
+  //       if (arrayOfObjects[index].name == movieSearchTerm) {
+  //         // console.log(arrayOfObjects[index].location);
+  //         $("#container").append(arrayOfObjects[index].location + "<br>");
+  //       }
+  //     }
+  //   });
+  // });
   });
-  });
-// });
+
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -49,18 +49,21 @@ function initMap() {
   var geocoder = new google.maps.Geocoder();
 
   document.getElementById('submit').addEventListener('click', function() {
-    console.log('click');
     var movieInput = $('#address').val();
-    console.log(movieInput);
     geocodeAddress(geocoder, map, movieInput);
   });
-}
+
 
 function geocodeAddress(geocoder, resultsMap, movieName) {
-   console.log(movieName);
   for (index in arrayOfObjects) {
         if (arrayOfObjects[index].name === movieName) {
           var address = arrayOfObjects[index].location + " San Francisco, CA";
+          var contentString = '<div id="content">' + arrayOfObjects[index].name + '<br>' + arrayOfObjects[index].location + '<br' + '</div>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 200
+          });
+          $("#container").append(arrayOfObjects[index].location + "<br>");
             geocoder.geocode({'address': address}, function(results, status) {
               if (status === google.maps.GeocoderStatus.OK) {
                 resultsMap.setCenter(results[0].geometry.location);
@@ -68,14 +71,17 @@ function geocodeAddress(geocoder, resultsMap, movieName) {
                   map: resultsMap,
                   position: results[0].geometry.location
                 });
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+              });
               } else {
                 alert('Geocode was not successful for the following reason: ' + status);
               }
             });
-        } else{
+        }
+        else {
           console.log('no match')
         }
+      }
+    }
   }
-
-}
-
