@@ -4,13 +4,19 @@
 <title>San Francisco Movies</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="javascripts/sfmovies.js" ></script>
+
 <!-- <link rel="stylesheet" type="text/css" href="snake.css"> -->
+<style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; width:60%;}
+    </style>
 </head>
 
 <body>
   <h1>San Francisco Movies</h1>
 
   <div id="container"></div>
+  <div id="map"></div>
 
   <br>
   <br>
@@ -20,6 +26,8 @@
     <br>
     <input type="submit" value="Submit">
   </form>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFaifuWi-19rCAy3rrjrPeJZyJ4BM76T4&callback=initMap"
+    async defer></script>
 
 </body>
 
