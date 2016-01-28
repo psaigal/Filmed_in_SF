@@ -58,7 +58,7 @@ function geocodeAddress(geocoder, resultsMap, movieName) {
   for (index in arrayOfObjects) {
         if (arrayOfObjects[index].name === movieName) {
           var address = arrayOfObjects[index].location + " San Francisco, CA";
-          var contentString = '<div id="content">' + arrayOfObjects[index].name + '<br>' + arrayOfObjects[index].location + '<br' + '</div>';
+          var contentString = '<div id="content">' + 'Movie Title: ' + arrayOfObjects[index].name + '<br>' + 'Location: ' + arrayOfObjects[index].location + '<br' + '</div>';
           var infowindow = new google.maps.InfoWindow({
             content: contentString,
             maxWidth: 200
@@ -71,9 +71,12 @@ function geocodeAddress(geocoder, resultsMap, movieName) {
                   map: resultsMap,
                   position: results[0].geometry.location
                 });
-                marker.addListener('click', function() {
+                // $('img').hover(function() {
+
+                marker.addListener('mouseover', function() {
                   infowindow.open(map, marker);
               });
+
               } else {
                 alert('Geocode was not successful for the following reason: ' + status);
               }
