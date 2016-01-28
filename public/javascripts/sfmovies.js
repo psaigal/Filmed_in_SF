@@ -1,12 +1,13 @@
 $(document).ready(function() {
   arrayOfObjects = []
 
-  $.getJSON('https://data.sfgov.org/api/views/yitu-d5am/rows.json?accessType=DOWNLOAD', function(data) {
+    $.getJSON('https://data.sfgov.org/resource/yitu-d5am.json', function(data) {
       //data is the JSON string
-      var arrayOfInformation = data.data;
+      var arrayOfInformation = data;
         for (index in arrayOfInformation) {
-          arrayOfObjects.push({name:arrayOfInformation[index][14], location: arrayOfInformation[index][10]})
-      }
+          arrayOfObjects.push({name:arrayOfInformation[index].title, location: arrayOfInformation[index].locations})
+      };
+  });
 
 
     $('#movie-form').submit(function(event) {
@@ -38,7 +39,7 @@ $(document).ready(function() {
     });
   });
   });
-});
+// });
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -77,3 +78,4 @@ function geocodeAddress(geocoder, resultsMap, movieName) {
   }
 
 }
+
