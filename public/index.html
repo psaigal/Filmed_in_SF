@@ -16,16 +16,21 @@
   <h1>San Francisco Movies</h1>
 
   <div id="container"></div>
-  <div id="map"></div>
-
-  <br>
-  <br>
-  <form action="/submit" method="post" id="movie-form">
+  <div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW">
+      <input id="submit" type="button" value="Geocode">
+    </div>
+    <form action="/submit" method="post" id="movie-form">
     Movie Name:<br>
-    <input type="text" name="movieName">
+    <input type="text" id="input" name="movieName" value="value">
     <br>
     <input type="submit" value="Submit">
   </form>
+    <div id="map"></div>
+
+  <br>
+  <br>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFaifuWi-19rCAy3rrjrPeJZyJ4BM76T4&callback=initMap"
     async defer></script>
 
