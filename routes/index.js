@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/submit', function(req, res) {
   var movieName = req.body.movieName //params
-  res.end(movieName);
+  var data = {nameOfMovie: movieName}
+  res.send(data);
 });
 
 module.exports = router;
