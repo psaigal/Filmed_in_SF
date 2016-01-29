@@ -55,6 +55,7 @@ function initMap() {
 
 
 function geocodeAddress(geocoder, resultsMap, movieName) {
+  $("#container").append('<h4>Locations:</h4>')
   for (index in arrayOfObjects) {
         if (arrayOfObjects[index].name === movieName) {
           var address = arrayOfObjects[index].location + " San Francisco, CA";
@@ -64,6 +65,7 @@ function geocodeAddress(geocoder, resultsMap, movieName) {
             maxWidth: 200
           });
           $("#container").append(arrayOfObjects[index].location + "<br>");
+
             geocoder.geocode({'address': address}, function(results, status) {
               if (status === google.maps.GeocoderStatus.OK) {
                 resultsMap.setCenter(results[0].geometry.location);
@@ -71,13 +73,13 @@ function geocodeAddress(geocoder, resultsMap, movieName) {
                   map: resultsMap,
                   position: results[0].geometry.location
                 });
-                // $('img').hover(function() {
 
                 marker.addListener('mouseover', function() {
                   infowindow.open(map, marker);
               });
 
-              } else {
+              }
+              else {
                 alert('Geocode was not successful for the following reason: ' + status);
               }
             });

@@ -1,8 +1,8 @@
 /** {
   outline: 1px solid red;
    font-family: 'Raleway', sans-serif;
-}*/
-
+}
+*/
 body {
   padding: 50px;
   font-family: 'Raleway', sans-serif;
@@ -20,10 +20,20 @@ h1 {
   text-align: center;
   font-size: 70px;
   font-family: 'Handlee', cursive;
-  margin-bottom: 2%;
   color: #B22222;
   text-shadow: 2px 2px #000000;
   font-weight: 400;
+}
+
+h4 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+}
+
+h5 {
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  margin-bottom: 2%;
 }
 
 #map {
