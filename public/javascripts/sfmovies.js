@@ -14,10 +14,12 @@ $(document).ready(function() {
         var menuItems = [];
         for (index in arrayOfObjects) {
           menuItems.push(arrayOfObjects[index].name);
-          console.log(menuItems)
         }
+        uniqueNames = menuItems.filter(function(item, pos) {
+          return menuItems.indexOf(item) == pos;
+        });
         $("#address").autocomplete({
-          source: menuItems
+          source: uniqueArray
         });
       });//end self-invoked function
   }); //end done
