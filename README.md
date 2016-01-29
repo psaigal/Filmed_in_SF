@@ -1,4 +1,3 @@
-# Filmed_in_SF
+# Filmed in San Francisco
 Find out where all your favorite movies were filmed in San Francisco
 
-Filmed in San Francisco
