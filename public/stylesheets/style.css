@@ -6,7 +6,11 @@
 body {
   padding: 50px;
   font-family: 'Raleway', sans-serif;
+  background-image: url('/images/golden-gate-bridge.jpg');
+   background-position: left bottom; /*Positioning*/
+   background-repeat: no-repeat; /*Prevent showing multiple background images*/
 }
+
 
 a {
   color: #00B7FF;
@@ -15,7 +19,7 @@ a {
 h1 {
   text-align: center;
   font-size: 70px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Handlee', cursive;
   margin-bottom: 2%;
   color: #B22222;
   text-shadow: 2px 2px #000000;
