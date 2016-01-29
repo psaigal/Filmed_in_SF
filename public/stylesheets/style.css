@@ -7,8 +7,9 @@ body {
   padding: 50px;
   font-family: 'Raleway', sans-serif;
   background-image: url('/images/golden-gate-bridge.jpg');
-   background-position: left bottom; /*Positioning*/
-   background-repeat: no-repeat; /*Prevent showing multiple background images*/
+ background-position: left bottom; /*Positioning*/
+ background-repeat: no-repeat; /*Prevent showing multiple background images*/
+ background-color: white;
 }
 
 
