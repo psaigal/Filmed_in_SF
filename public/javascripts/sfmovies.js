@@ -19,7 +19,7 @@ $(document).ready(function() {
           return menuItems.indexOf(item) == pos;
         });
         $("#address").autocomplete({
-          source: uniqueArray
+          source: uniqueNames
         });
       });//end self-invoked function
   }); //end done
@@ -62,7 +62,7 @@ $(document).ready(function() {
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
-    center: {lat: -34.397, lng: 150.644}
+    center: {lat: 37.775863, lng: -122.405674}
   });
   var geocoder = new google.maps.Geocoder();
 
