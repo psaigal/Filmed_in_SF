@@ -1,3 +1,8 @@
+/** {
+  outline: 1px solid red;
+   font-family: 'Raleway', sans-serif;
+}*/
+
 body {
   padding: 50px;
   font-family: 'Raleway', sans-serif;
@@ -9,10 +14,47 @@ a {
 
 h1 {
   text-align: center;
+  font-size: 70px;
   font-family: 'Raleway', sans-serif;
+  margin-bottom: 2%;
+  color: #B22222;
+  text-shadow: 2px 2px #000000;
+  font-weight: 400;
 }
 
-/*#content {
-  display:none;
+#map {
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 7px 7px 4px #888888;
 }
-*/
+
+#floating-panel {
+  margin-bottom: 3%;
+  width: 30%;
+  margin-right: 35%;
+  margin-left: 35%;
+  padding-left: 4%;
+}
+
+#submit {
+  background-color: #B22222;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #B22222;
+  font-size: 22px;
+}
+
+#address {
+  border-radius: 5px;
+  font-size: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid gray;
+  margin-right: 2px;
+}
+
+#container {
+  font-size: 20px;
+  margin-top: 5%;
+  text-align: center;
+}
