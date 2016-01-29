@@ -1,32 +1,47 @@
 $(document).ready(function() {
   arrayOfObjects = []
 
-    $.getJSON('https://data.sfgov.org/resource/yitu-d5am.json', function(data) {
+  $.getJSON('https://data.sfgov.org/resource/yitu-d5am.json', function(data) {
       //data is the JSON string
       var arrayOfInformation = data;
         for (index in arrayOfInformation) {
           arrayOfObjects.push({name:arrayOfInformation[index].title, location: arrayOfInformation[index].locations, releaseYear: arrayOfInformation[index].release_year, productionCompany: arrayOfInformation[index].production_company, director: arrayOfInformation[index].director})
       };
-  });
+  })
+  .done(function(){
+      $(function() {
+        console.log(arrayOfObjects);
+        var menuItems = [];
+        for (index in arrayOfObjects) {
+          menuItems.push(arrayOfObjects[index].name);
+          console.log(menuItems)
+        }
+        $("#address").autocomplete({
+          source: menuItems
+        });
+      });//end self-invoked function
+  }); //end done
 
 
-  //   $('#movie-form').submit(function(event) {
-  //   event.preventDefault();
-  //   var path = $('#movie-form').attr("action")
-  //   var formData = $('#movie-form').serialize();
-  //   $.ajax({
-  //     url: '/submit',
-  //     type: 'POST',
-  //     data: formData,
-  //     success: function(data) {
-  //     console.log(data);
-  //     console.log('Successful');
-  //  },
 
-  //   error: function() {
-  //     console.log('Error');
-  //   }
-  //   })
+
+   //  $('#search').submit(function(event) {
+   //  event.preventDefault();
+   //  var path = $('#search').attr("action")
+   //  var formData = $('#movie-form').serialize();
+   //  $.ajax({
+   //    url: '/submit',
+   //    type: 'POST',
+   //    data: formData,
+   //    success: function(data) {
+   //    console.log(data);
+   //    console.log('Successful');
+   // },
+
+   //  error: function() {
+   //    console.log('Error');
+   //  }
+   //  })
   //   .done(function(response){
   //     movieSearchTerm = response.nameOfMovie;
   //     for (index in arrayOfObjects) {
@@ -38,6 +53,7 @@ $(document).ready(function() {
   //     }
   //   });
   // });
+
   });
 
 
