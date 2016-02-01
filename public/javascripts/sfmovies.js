@@ -10,7 +10,6 @@ $(document).ready(function() {
   })
   .done(function(){
       $(function() {
-        console.log(arrayOfObjects);
         var menuItems = [];
         for (index in arrayOfObjects) {
           menuItems.push(arrayOfObjects[index].name);
@@ -73,38 +72,45 @@ function initMap() {
 
 
 function geocodeAddress(geocoder, resultsMap, movieName) {
+  var foundMatch = false;
   $("#container").append('<h4>Locations:</h4>')
   for (index in arrayOfObjects) {
-        if (arrayOfObjects[index].name === movieName) {
-          var address = arrayOfObjects[index].location + " San Francisco, CA";
-          var contentString = '<div id="content">' + 'Movie Title: ' + arrayOfObjects[index].name + '<br>' + 'Location: ' + arrayOfObjects[index].location + '<br' + '</div>';
-          var infowindow = new google.maps.InfoWindow({
-            content: contentString,
-            maxWidth: 200
-          });
-          $("#container").append(arrayOfObjects[index].location + "<br>");
-
-            geocoder.geocode({'address': address}, function(results, status) {
-              if (status === google.maps.GeocoderStatus.OK) {
-                resultsMap.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                  map: resultsMap,
-                  position: results[0].geometry.location
-                });
-
-                marker.addListener('mouseover', function() {
-                  infowindow.open(map, marker);
-              });
-
-              }
-              else {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
+      if (arrayOfObjects[index].name == movieName) {
+        foundMatch = true;
+        var address = arrayOfObjects[index].location + " San Francisco, CA";
+        $("#container").append(arrayOfObjects[index].location + "<br>");
+        var contentString = '<div id="content">' + 'Movie Title: ' + arrayOfObjects[index].name + '<br>' + 'Location: ' + arrayOfObjects[index].location + '<br>' + '</div>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        });
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
             });
-        }
-        else {
-          console.log('no match')
-        }
+
+            marker.addListener('mouseover', function() {
+                infowindow.open(map, marker);
+            });
+
+          }
+          else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+      else {
+        console.log("No matches")
       }
     }
+    if (foundMatch == false) {
+      $("h5").append("<p>Sorry no matches were found</p>");
+    }
   }
+}
+
+
+
